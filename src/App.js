@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route, Switch} from 'react-router-dom'
+import Layout from "./hoc/Layout/Layout";
+import Home from "./containers/Home/Home";
+import Delivery from "./containers/Delivery/Delivery";
+import Catalog from "./containers/Catalog/Catalog";
+import About from "./containers/About/About";
+import Payment from "./containers/Payment/Payment";
+import StocksCatalog from "./containers/StocksCatalog/StocksCatalog";
+import Contact from "./containers/Contact/Contact";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page-wrap">
+      <Layout>
+        <Switch>
+          <Route path='/' exact render={() => <Home/>}/>
+          <Route path='/catalog' render={() => <Catalog/>}/>
+          <Route path='/about' render={() => <About/>}/>
+          <Route path='/delivery' render={() => <Delivery/>}/>
+          <Route path='/payment' render={() => <Payment/>}/>
+          <Route path='/stock' render={() => <StocksCatalog/>}/>
+          <Route path='/contact' render={() => <Contact/>}/>
+          <Route render={() => <ErrorPage/>}/>
+        </Switch>
+      </Layout>
     </div>
   );
 }
